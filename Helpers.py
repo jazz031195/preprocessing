@@ -38,3 +38,15 @@ def save_nifti(input_img: np.ndarray, save_name: str, affine_transf:np.ndarray=n
         img = nib.Nifti1Image(input_img, affine_transf)
         
     nib.save(img, save_name)
+
+def load_affine(img_path: str) -> np.ndarray:
+    """
+    Function that returns the affine matrix from a nifti image
+    Args:
+        img_path (str): path of the nifti image
+    Returns:
+        affine matrix (np.ndarray)
+    """
+    
+	img = nib.load(img_path)
+	return img.affine

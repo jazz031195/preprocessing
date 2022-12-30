@@ -48,5 +48,5 @@ def load_affine(img_path: str) -> np.ndarray:
         affine matrix (np.ndarray)
     """
     
-	img = nib.load(img_path)
-	return img.affine
+    img = nib.load(img_path)
+    return img.affine

@@ -50,3 +50,39 @@ def load_affine(img_path: str) -> np.ndarray:
     
     img = nib.load(img_path)
     return img.affine
+
+def calculate_temporal_mean(input_img: np.ndarray) -> float:
+    """
+    Calculate the temporal mean of a 4D image
+    Args:
+        input_img (np.ndarray) : 4D volume
+    Returns:
+        (np.ndarray) :3D volume, averaged w.r.t. time axis
+    """
+
+    return np.mean(input_img, axis=3)
+
+def calculate_temporal_std(input_img: np.ndarray) -> float:
+    """
+    Calculate the temporal standard deviation of a 4D image
+    Args:
+        input_img (np.ndarray): 4D volume
+    Returns:
+        (np.ndarray): 3D volume, standard deviation w.r.t. time axis
+    """
+
+    return np.std(input_img, axis=3)
+
+def calculate_temporal_snr(input_img: np.ndarray, TR: float) -> np.ndarray:
+    """
+    Calculate the temporal SNR of a 2D image
+    Args:
+        input_img (np.ndarray) : 2D volume
+        TR (float): repetition time [ms]
+    Returns:
+        (np.ndarray): SNR w.r.t. time axis
+    """
+    tmean_img = calculate_temporal_mean(input_img)
+    tstd_img = calculate_temporal_std(input_img)
+    tSNR = tmean_img / (tstd_img*np.sqrt(TR))
+    return tSNR

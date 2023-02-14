@@ -1,0 +1,6 @@
+{
+    "data_directory": "/home/localadmin/Documents/dfMRI_spherical_encoding/",
+    "subject_names" : ["sub-01"],
+    "steps_to_run"  : ["adc", "topup"],
+    "nb_dummies"    : [2]
+}
